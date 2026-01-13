@@ -6,6 +6,9 @@ C++ ile LeetCode problem çözümleri. Çözümler direkt LeetCode'a kopyalanabi
 
 ```bash
 cd LeetCode_Projects
+```
+
+```bash
 mkdir build && cd build
 cmake ..
 make
@@ -102,5 +105,4 @@ LeetCode_Projects/
 
 - `class Solution` LeetCode formatında - direkt kopyalanabilir
 - `using namespace std;` kullanılıyor - LeetCode ile uyumlu
-- Her dosyada gerekli `#include`'lar var
 - `registry.hpp` sadece lokal test için, LeetCode'a kopyalanmaz
