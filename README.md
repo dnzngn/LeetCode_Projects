@@ -73,9 +73,11 @@ make
 
 ## LeetCode'a Kopyalama
 
-`// ==================== LEETCODE SOLUTION START ====================` ile
-`// ==================== LEETCODE SOLUTION END ====================` arasındaki
-`class Solution` kısmını direkt LeetCode'a kopyala.
+`// ==================== LEETCODE SOLUTION START ====================`
+
+`// ==================== LEETCODE SOLUTION END ====================` 
+
+arasındaki `class Solution` kısmını direkt LeetCode'a kopyala.
 
 ## Proje Yapısı
 
