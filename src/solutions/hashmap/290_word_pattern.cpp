@@ -39,7 +39,6 @@ public:
         // 3) İki yönlü map
         unordered_map<char, string> p2w;
         unordered_map<string, char> w2p;
-
         for (int k = 0; k < pattern.size(); ++k) {
             char p = pattern[k];
             const string& w = words[k];
