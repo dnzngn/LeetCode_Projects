@@ -59,7 +59,7 @@ public:
 
 // ==================== LEETCODE SOLUTION END ====================
 
-namespace p250 {
+namespace p290 {
 void test() {
     Solution sol;
     
@@ -90,5 +90,5 @@ void test() {
 
 
 }
-REGISTER_PROBLEM(250, "Word Pattern")
+REGISTER_PROBLEM(290, "Word Pattern")
 }
