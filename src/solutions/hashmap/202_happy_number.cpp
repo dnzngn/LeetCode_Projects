@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <unordered_set>
 #include <math.h>
 
 #include "registry.hpp"
@@ -18,52 +18,32 @@ class Solution {
 public:
     bool isHappy(int n) {
 
-        vector<int> digits;
-        unordered_map<int, int> map_n;
-        
-        int sum{0};
+        unordered_set<int> seen;
 
-        cout << n/10 << '\n';
-       
-        if(n/10 < 1){
-            sum = pow(n%10,2);
-        } else {
+        while (n != 1) {
 
-            
-            cout << "n:\t" << n << '\n';
-            cout << "sum:\t" << sum << '\n';
-        
-            digits.push_back(n%10);
-            
-            while (n > 0){
-                cout << "Hey\n";
-                n = n/10;
-                digits.push_back(n%10);
+            // Daha önce bu sayıya geldiysek döngü var
+            if (seen.count(n)) {
+                return false;
             }
+            seen.insert(n);
 
-            
-            
-            for(int i =0; i<digits.size()-1; i++){
-                //cout <<"From vec: " << digits[i] << '\t';
-                sum += pow(digits[i],2);
+            int sum = 0;
+
+            // Rakamların kareleri toplamı
+            while (n > 0) {
+                int digit = n % 10;
+                sum += digit * digit;
+                n /= 10;
             }
-
-            
 
             n = sum;
-            
-
-            cout << "sum:\t" << sum << '\n';
-            cout << "n:\t" << n << '\n';
         }
 
-    
-        cout << "sum:\t" << sum << '\n';
-        
-        
-        return n == 1;
+        return true;
     }
 };
+
 // ==================== LEETCODE SOLUTION END ====================
 
 namespace p202 {
@@ -91,6 +71,25 @@ void test() {
     int nums4 = 10;
     auto res4 = sol.isHappy(nums4);
     cout << "Test 4: " << boolalpha << res4 << " expected true";
+
+    cout << "\n===========================\n";
+
+    int nums5 = 7;
+    auto res5 = sol.isHappy(nums5);
+    cout << "Test 5: " << boolalpha << res5 << " expected true";
+
+    cout << "\n===========================\n";
+
+    int nums6 = 4;
+    auto res6 = sol.isHappy(nums6);
+    cout << "Test 6: " << boolalpha << res6 << " expected false";
+
+    cout << "\n===========================\n";
+
+    int nums7 = 1111111;
+    auto res7 = sol.isHappy(nums7);
+    cout << "Test 7: " << boolalpha << res7 << " expected true";
+    
 }
 REGISTER_PROBLEM(202, "Happy Number")
 }
