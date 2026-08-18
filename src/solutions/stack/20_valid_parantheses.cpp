@@ -8,6 +8,9 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
+
+#include <stack>
 
 #include "registry.hpp"
 
@@ -17,10 +20,31 @@ using namespace std;
 class Solution {
 public:
     bool isValid(string s) {
+        if (s.size() % 2 != 0) return false;   // tek uzunluk → asla valid değil
 
+        stack<char> st;
+
+        for (char c : s) {
+            switch (c) {
+                case '(': case '[': case '{':
+                    st.push(c);
+                    break;
+                case ')':
+                    if (st.empty() || st.top() != '(') return false;
+                    st.pop();
+                    break;
+                case ']':
+                    if (st.empty() || st.top() != '[') return false;
+                    st.pop();
+                    break;
+                case '}':
+                    if (st.empty() || st.top() != '{') return false;
+                    st.pop();
+                    break;
+            }
+        }
         
-        
-        return false;
+        return st.empty();
     }
 };
 // ==================== LEETCODE SOLUTION END ====================
