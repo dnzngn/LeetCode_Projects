@@ -37,15 +37,7 @@ public:
 
     void push(int value){
         st.push(value);
-
-        if(!min_st.empty()){
-            if(value <= min_st.top()){
-                min_st.push(value);
-            } else
-                min_st.push(min_st.top());
-        } else{
-            min_st.push(value);
-        }
+        min_st.push(min_st.empty() ? value : std::min(value, min_st.top()));
     }
 
     void pop(){
