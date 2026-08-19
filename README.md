@@ -9,17 +9,15 @@ cd LeetCode_Projects
 ```
 
 ```bash
-mkdir build && cd build
-cmake ..
-make
+mkdir build
 ```
 
 ## Çalıştırma
 
 ```bash
-./LeetCode_Projects list      # Problemleri listele
-./LeetCode_Projects 1         # Two Sum çalıştır
-./LeetCode_Projects all       # Hepsini çalıştır
+./build/LeetCode_Projects list      # Problemleri listele
+./build/LeetCode_Projects 1         # Two Sum çalıştır
+./build/LeetCode_Projects all       # Hepsini çalıştır
 ```
 
 ## Yeni Problem Ekleme
@@ -28,7 +26,7 @@ make
 
 `src/solutions/kategori/XXX_problem_adi.cpp` dosyası oluştur.
 
-Kategoriler: `array`, `string`, `math`, `two_pointers`, `matrix`, `graph`
+Kategoriler: `array`, `string`, `math`, `two_pointers`, `matrix`, `graph`, ...
 
 ### 2. Şablonu Kullan
 
@@ -69,9 +67,11 @@ REGISTER_PROBLEM(XXX, "Problem Adı")
 ### 3. Derle ve Çalıştır
 
 ```bash
-cd build
-make
-./LeetCode_Projects XXX
+# İlk kurulum
+cmake -S . -B build
+
+# Normal geliştirme
+cmake --build build -j$(nproc)
 ```
 
 ## LeetCode'a Kopyalama
