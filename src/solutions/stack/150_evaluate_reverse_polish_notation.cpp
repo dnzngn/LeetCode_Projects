@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <unordered_map>
+#include <unordered_set>
 
 #include <stack>
 
@@ -20,49 +20,24 @@ using namespace std;
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
+        static const unordered_set<string> ops{"+", "-", "*", "/"};
+        stack<int, vector<int>> st;
 
-        stack<int> st;
-
-        for(const string& token : tokens){
-
-            if(token == "+"){
-                int a = st.top();
-                st.pop();
-                int b = st.top();
-                st.pop();
-                cout << '\n' << a << '\t' << b << '\n';
-                st.push(a + b); 
-            }
-            else if(token == "*"){
-                int a = st.top();
-                st.pop();
-                int b = st.top();
-                st.pop();
-                cout << '\n' << a << '\t' << b <<  '\n';
-                st.push(a * b); 
-            }
-            else if(token== "/"){
-                int a = st.top();
-                st.pop();
-                int b = st.top();
-                st.pop();
-                cout << '\n' << a << '\t' << b << '\n';
-                st.push(b / a); 
-            }
-            else if(token == "-"){
-                int a = st.top();
-                st.pop();
-                int b = st.top();
-                st.pop();
-                cout << '\n' << a << '\t' << b << '\n';
-                st.push(b - a); 
-            } else{
+        for (const string& token : tokens) {
+            if (ops.count(token) == 0) {
                 st.push(stoi(token));
-                cout << st.top()<<'\t';
+                continue;
+            }
+            int a = st.top(); st.pop();   // right operand
+            int b = st.top(); st.pop();   // left  operand
+            switch (token[0]) {
+                case '+': st.push(b + a); break;
+                case '-': st.push(b - a); break;
+                case '*': st.push(b * a); break;
+                case '/': st.push(b / a); break;
             }
         }
-
-        return st.top(); 
+        return st.top();
     }
 };
 // ==================== LEETCODE SOLUTION END ====================
